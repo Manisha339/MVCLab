@@ -17,7 +17,7 @@ namespace MVCBasics.Controllers
         {
             _logger = logger;
         }
-
+        [ActionName("content")]
         public ContentResult GetContents()
         {
             return Content("This is a sample content from ContentResult");
@@ -41,6 +41,12 @@ namespace MVCBasics.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [NonAction]
+        public void ProcessView()
+        {
+            Console.WriteLine("Processing");
         }
     }
 }
