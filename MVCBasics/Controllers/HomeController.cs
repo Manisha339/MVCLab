@@ -18,9 +18,18 @@ namespace MVCBasics.Controllers
             _logger = logger;
         }
 
-        public ViewResult Index()
+        public ContentResult GetContents()
         {
-            return View();
+            return Content("This is a sample content from ContentResult");
+        }
+
+        public RedirectToRouteResult RedirectRoute()
+        {
+            return new RedirectToRouteResult(new { Controller = "About", Action = "Index" });
+        }
+        public RedirectToActionResult Index()
+        {
+            return RedirectToAction("Privacy");
         }
 
         public ViewResult Privacy()
