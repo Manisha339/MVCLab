@@ -27,20 +27,28 @@ namespace MVCBasics.Controllers
         {
             return new RedirectToRouteResult(new { Controller = "About", Action = "Index" });
         }
-        public RedirectToActionResult Index()
+        public ViewResult Index()
         {
-            return RedirectToAction("Privacy");
+            TempData["sessionName"] = "This is from temp data";
+            return View();
         }
 
         public ViewResult Privacy()
         {
+            ViewBag.Header = "This is coming from viewBag";
+            ViewBag.Message = "Use this page to detail your site's privacy policy.";
+            ViewBag.Temp = TempData["sessionName"];
             return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var error = new ErrorViewModel();
+            error.RequestId = "abc";
+            error.Content = TempData["sessionName"].ToString();
+            TempData.Keep("sessionName");
+            return View(error);
         }
 
         [NonAction]
@@ -48,5 +56,7 @@ namespace MVCBasics.Controllers
         {
             Console.WriteLine("Processing");
         }
+        
+
     }
 }
