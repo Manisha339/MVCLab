@@ -12,8 +12,10 @@ namespace MVCBasics.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+        [Required]
         [StringLength(10)]
         public string Mobile { get; set; }
+        [Required]
         [StringLength(10)]
         public string City { get; set; }
 

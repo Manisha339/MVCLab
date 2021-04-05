@@ -26,10 +26,11 @@ namespace MVCBasics.Controllers
         {
             return View("Form");
         }
+        [ServiceFilter(typeof(ValidationFilter))]
         [HttpPost]
         public IActionResult PostForm(EmployeeModel employee)
         {
-            if (ModelState.IsValid)
+            /*if (ModelState.IsValid)
             {
                 ViewBag.FullName = " Thank you for submitting the Form " + employee.FirstName + " " + employee.LastName;
 
@@ -48,7 +49,8 @@ namespace MVCBasics.Controllers
                     }
                 }
                 ViewBag.Error = sb.ToString();
-            }
+            }*/
+            ViewBag.FullName = " Thank you for submitting the Form " + employee.FirstName + " " + employee.LastName;
             return View("Form");
         }
     }
