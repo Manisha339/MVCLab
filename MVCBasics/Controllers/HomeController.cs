@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 
 namespace MVCBasics.Controllers
 {
+    //Attribute Routing
+    [Route("[controller]/[action]")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
