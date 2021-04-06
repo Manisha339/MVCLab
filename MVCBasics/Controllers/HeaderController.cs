@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace MVCBasics.Controllers
 {
+    //Attribute Routing
+    [Route("[controller]/[action]")]
     public class HeaderController : Controller
     {
         public PartialViewResult Index()
