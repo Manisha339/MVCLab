@@ -10,10 +10,12 @@ using System.Threading.Tasks;
 namespace MVCBasics.Controllers
 {
     //Attribute Routing
-    [Route("[controller]/[action]")]
+    [Route("user")]
     public class UserController : Controller
     {
         // GET: UserController
+        //Attribute Routing
+        [Route("Index")]
         public ActionResult Index()
         {
             List<UserModel> users = new List<UserModel>();
@@ -24,6 +26,9 @@ namespace MVCBasics.Controllers
             ViewData["users"] = users;
             return View();
         }
+        //Attribute Routing
+        [Route("")]
+        [Route("Form")]
         public ViewResult GetForm()
         {
             return View("Form");
