@@ -8,6 +8,8 @@ namespace MVCBasics.Models
 {
     public class EmployeeModel
     {
+        public string ID { get; set; }
+
         [Required]
         public string FirstName { get; set; }
         [Required]
