@@ -45,9 +45,9 @@ namespace MVCBasics.Controllers
         public IActionResult Error()
         {
             var error = new ErrorViewModel();
-            error.RequestId = "abc";
-            error.Content = TempData["sessionName"].ToString();
-            TempData.Keep("sessionName");
+            error.RequestId = "fdf";
+            error.Content = TempData.Peek("sessionName").ToString();
+
             return View(error);
         }
 
