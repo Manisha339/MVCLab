@@ -1,15 +1,21 @@
-﻿using DataLayer;
-using Microsoft.AspNetCore.Mvc;
-using MVCBasics.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using DataLayer;
+using MVCBasics.Models;
+using Models;
 
 namespace MVCBasics.Controllers
 {
-    public class EmployeeController : Controller
+    public class StudentController : Controller
     {
-        private readonly IBaseRepository<EmployeeModel> _repo;
+        private readonly IBaseRepository<StudentModel> _repo;
 
-        public EmployeeController(IBaseRepository<EmployeeModel> repo)
+        public StudentController(IBaseRepository<StudentModel> repo)
         {
             _repo = repo;
         }
@@ -19,7 +25,7 @@ namespace MVCBasics.Controllers
         {
             return View(await _repo.GetAll());
         }
-        
+
         // GET: Employee/Details/5
         public async Task<IActionResult> Details(string id)
         {
@@ -48,7 +54,7 @@ namespace MVCBasics.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,FirstName,LastName,Mobile,City,Department")] EmployeeModel employeeModel)
+        public async Task<IActionResult> Create(StudentModel employeeModel)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +63,7 @@ namespace MVCBasics.Controllers
             }
             return View(employeeModel);
         }
-        
+
         // GET: Employee/Edit/5
         public async Task<IActionResult> Edit(string id)
         {
@@ -79,7 +85,7 @@ namespace MVCBasics.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(string id, [Bind("ID,FirstName,LastName,Mobile,City,Department")] EmployeeModel employeeModel)
+        public async Task<IActionResult> Edit(string id, StudentModel employeeModel)
         {
             if (id != employeeModel.ID)
             {
@@ -89,6 +95,7 @@ namespace MVCBasics.Controllers
             if (ModelState.IsValid)
             {
                 await _repo.Update(employeeModel);
+
                 return RedirectToAction(nameof(Index));
             }
             return View(employeeModel);
@@ -120,6 +127,5 @@ namespace MVCBasics.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-       
     }
 }

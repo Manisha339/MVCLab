@@ -30,7 +30,9 @@ namespace MVCBasics
             services.AddDbContext<DataLayer.AppContext>(item =>
                             item.UseSqlServer(Configuration.GetConnectionString("AppContext")));
             services.AddScoped<ValidationFilter>();
+            services.AddTransient(typeof(IBaseRepository<>), typeof(BaseRepository<>));
             services.AddControllersWithViews().AddNewtonsoftJson();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
