@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +26,8 @@ namespace MVCBasics
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<AppContext>(item =>
+                            item.UseSqlServer(Configuration.GetConnectionString("AppContext")));
             services.AddScoped<ValidationFilter>();
             services.AddControllersWithViews().AddNewtonsoftJson();
         }
@@ -51,18 +54,9 @@ namespace MVCBasics
 
             app.UseEndpoints(endpoints =>
             {
-                ////Attribute Routing
-                endpoints.MapControllers();
-                //Conventional Routing
-                /*endpoints.MapControllerRoute(
-                    name: "user",
-                    pattern: "users",
-                    defaults: new { Controller = "User", action = "GetForm" }
-                    );
-
-                endpoints.MapControllerRoute(
+               endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");*/
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

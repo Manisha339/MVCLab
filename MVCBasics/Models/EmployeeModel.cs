@@ -20,6 +20,7 @@ namespace MVCBasics.Models
         [Required]
         [StringLength(10)]
         public string City { get; set; }
-
+        [Required]
+        public string Department { get; set; }
     }
 }
