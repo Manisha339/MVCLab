@@ -22,6 +22,10 @@ namespace LinqProject
             SetOperations.DoUnion();
             Console.WriteLine("\nUnion All Function");
             SetOperations.DoUnionAll();
+
+            Console.WriteLine("\nJoin operation");
+            JoinOperation.Do();
+
             /*Seed();
             Console.WriteLine("All Users\n");
             foreach (User user in users)
