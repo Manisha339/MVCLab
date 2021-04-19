@@ -10,14 +10,17 @@ namespace DataLayer
 {
     public class AppContext: DbContext
     {
-        public AppContext(DbContextOptions options): base(options)
+        public AppContext(DbContextOptions options) : base(options)
         {
 
         }
-
         public DbSet<EmployeeModel> EmployeeModel { get; set; }
         public DbSet<StudentModel> StudentModel { get; set; }
         public DbSet<TeacherModel> TeacherModel { get; set; }
+        public DbSet<SubjectsModel> SubjectsModel { get; set; }
+        public DbSet<StudentsModel> StudentsModel { get; set; }
+        public DbSet<MarksModel> MarksModel { get; set; }
+
 
     }
 }
